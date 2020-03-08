@@ -12,16 +12,17 @@ namespace PCInfoDesktop.Models {
         /// Gets the installed applications in the PC.
         /// </summary>
         public static void GetInstalledApps() {
-            string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (var key = Registry.LocalMachine.OpenSubKey(registryKey)) {
-                foreach (var subkeyName in key.GetSubKeyNames()) {
-                    using (var subkey = key.OpenSubKey(subkeyName)) {
-                        var appName = subkey.GetValue("DisplayName");
-                        Console.WriteLine(appName);
+            string registry = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+            using (var key = Registry.LocalMachine.OpenSubKey(registry)) {
+                foreach (var subKeyName in key.GetSubKeyNames()) {
+                    using (var tempKey = key.OpenSubKey(subKeyName)) {
+                        // list available values to get
+                        foreach (var name in tempKey.GetValueNames()) {
+                            Console.WriteLine(name);
+                        }
                     }
                 }
             }
         }
-
     }
 }
