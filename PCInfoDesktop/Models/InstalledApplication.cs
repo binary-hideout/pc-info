@@ -34,6 +34,23 @@ namespace PCInfoDesktop.Models {
         public string Version { get; set; }
 
         /// <summary>
+        /// Constructs an installed application by raw input from <c>Software</c> class' method.
+        /// </summary>
+        /// <param name="name">Name of the application.</param>
+        /// <param name="publisher">Publisher that installed the app.</param>
+        /// <param name="installDate">Date when the app was installed in format <c>yyyyMMdd</c>.</param>
+        /// <param name="size"><c>string</c> representing the size in disk of the app.</param>
+        /// <param name="version">Version of the app.</param>
+        /// <seealso cref="Software"/>
+        public InstalledApplication(string name, string publisher, string installDate, string size, string version) {
+            Name = name;
+            Publisher = publisher;
+            InstallDate = ParseRawDate(installDate);
+            Size = Convert.ToInt32(size);
+            Version = version;
+        }
+
+        /// <summary>
         /// Parses raw date format <c>yyyyMMdd</c> to a valid <c>DateTime</c> object.
         /// </summary>
         /// <param name="rawFormat"><c>string</c> representing a date in format <c>yyyyMMdd</c>.</param>
