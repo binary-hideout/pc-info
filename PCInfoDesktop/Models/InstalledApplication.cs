@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
+using System.Linq;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
@@ -60,10 +59,24 @@ namespace PCInfoDesktop.Models {
                 var date = DateTime.ParseExact(rawFormat, "yyyyMMdd", CultureInfo.InvariantCulture);
                 return date;
             }
-            // if the string argument is empty, an exception will be raised and the method will return null
+            // if the string argument is empty, an exception will be raised and the method will return DateTime.MinValue
             catch (FormatException) {
                 return default;
             }
+        }
+
+        /// <summary>
+        /// Determines if the instance is empty; that is, if all its properties are set as <c>default</c> (<c>string.Empty</c>, <c>0</c> or <c>DateTime.MinValue</c>).
+        /// </summary>
+        /// <returns><c>true</c> only if instance is empty.</returns>
+        public bool IsEmpty() {
+            var strApp = ToString();
+            var notWhiteSpaces = new string (
+                (from character in strApp
+                 where !char.IsWhiteSpace(character)
+                 select character).ToArray()
+            );
+            return string.IsNullOrEmpty(notWhiteSpaces);
         }
 
         /// <summary>
@@ -71,7 +84,7 @@ namespace PCInfoDesktop.Models {
         /// </summary>
         /// <returns><c>string</c> representing the application.</returns>
         public override string ToString() {
-            return $"{Name}, {Publisher}, {InstallDate.ToShortDateString()}, {Size}, {Version}";
+            return $"{Name} {Publisher} {(InstallDate == default ? string.Empty : InstallDate.ToShortDateString())} {(Size == 0 ? string.Empty : Size.ToString())} {Version}";
         }
     }
 }
