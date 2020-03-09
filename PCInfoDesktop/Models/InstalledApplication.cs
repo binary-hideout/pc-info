@@ -80,11 +80,21 @@ namespace PCInfoDesktop.Models {
         }
 
         /// <summary>
+        /// Creates a <c>string[5]</c> collection of the instance's properties in the following order: name, publisher, date, size, version.
+        /// </summary>
+        /// <returns><c>string[5]</c> of the properties.</returns>
+        public string[] ToArray() {
+            string date = InstallDate == default ? string.Empty : InstallDate.ToShortDateString();
+            string size = Size == 0 ? string.Empty : Size.ToString();
+            return new string[] { Name, Publisher, date, size, Version };
+        }
+
+        /// <summary>
         /// Makes a <c>string</c> representation of the installed application.
         /// </summary>
         /// <returns><c>string</c> representing the application.</returns>
         public override string ToString() {
-            return $"{Name} {Publisher} {(InstallDate == default ? string.Empty : InstallDate.ToShortDateString())} {(Size == 0 ? string.Empty : Size.ToString())} {Version}";
+            return string.Join(" ", ToArray());
         }
     }
 }
