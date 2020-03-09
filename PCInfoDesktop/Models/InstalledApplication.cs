@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
@@ -63,20 +62,6 @@ namespace PCInfoDesktop.Models {
             catch (FormatException) {
                 return default;
             }
-        }
-
-        /// <summary>
-        /// Determines if the instance is empty; that is, if all its properties are set as <c>default</c> (<c>string.Empty</c>, <c>0</c> or <c>DateTime.MinValue</c>).
-        /// </summary>
-        /// <returns><c>true</c> only if instance is empty.</returns>
-        public bool IsEmpty() {
-            var strApp = ToString();
-            var notWhiteSpaces = new string (
-                (from character in strApp
-                 where !char.IsWhiteSpace(character)
-                 select character).ToArray()
-            );
-            return string.IsNullOrEmpty(notWhiteSpaces);
         }
 
         /// <summary>
