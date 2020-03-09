@@ -50,5 +50,26 @@ namespace PCInfoDesktop.Models {
 
             return currentList;
         }
+
+        /// <summary>
+        /// Gets all the installed applications in the PC: for the current user and for all users (both 32 and 64-bits versions).
+        /// </summary>
+        /// <returns>List of installed apps sorted by name.</returns>
+        public static List<InstalledApplication> GetAllInstalledApps() {
+            // initialize list of installed apps as empty (not null).
+            var installedApplications = new List<InstalledApplication>();
+
+            // search apps in current user
+            installedApplications = GetInstalledAppsBy(Registry.CurrentUser, REGISTRY64, installedApplications);
+            // search apps in machine (all users)
+            installedApplications = GetInstalledAppsBy(Registry.LocalMachine, REGISTRY64, installedApplications);
+            // search apps in machine (32-bits version)
+            installedApplications = GetInstalledAppsBy(Registry.LocalMachine, REGISTRY32, installedApplications);
+
+            // sort apps by name
+            installedApplications.Sort((app1, app2) => app1.Name.CompareTo(app2.Name));
+
+            return installedApplications;
+        }
     }
 }
