@@ -1,19 +1,27 @@
 ﻿using Microsoft.Win32;
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
     /// Handles the installed software in the PC.
     /// </summary>
-    public class Software {
+    public static class Software {
+        /// <summary>
+        /// Registry key name to find 64-bit version of applications.
+        /// </summary>
+        private static string REGISTRY64 { get; } = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+        /// <summary>
+        /// Registry key name to find 32-bit version of applications.
+        /// </summary>
+        private static string REGISTRY32 { get; } = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+
         /// <summary>
         /// Gets the installed applications in the PC.
         /// </summary>
         public static void GetInstalledApps() {
-            string registry = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (var key = Registry.LocalMachine.OpenSubKey(registry)) {
+            using (var key = Registry.LocalMachine.OpenSubKey(REGISTRY64)) {
                 foreach (var subKeyName in key.GetSubKeyNames()) {
                     using (var tempKey = key.OpenSubKey(subKeyName)) {
                         // list available values to get
