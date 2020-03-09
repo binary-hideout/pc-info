@@ -34,20 +34,20 @@ namespace PCInfoDesktop.Models {
         public string Version { get; set; }
 
         /// <summary>
-        /// Constructs an installed application by raw input from <c>Software</c> class' method.
+        /// Constructs an installed application by raw input (of type <c>object</c>) from <c>Software</c> class' method. If an argument is <c>null</c>, the corresponding property will be set as an empty string.
         /// </summary>
         /// <param name="name">Name of the application.</param>
         /// <param name="publisher">Publisher that installed the app.</param>
         /// <param name="installDate">Date when the app was installed in format <c>yyyyMMdd</c>.</param>
-        /// <param name="size"><c>string</c> representing the size in disk of the app.</param>
+        /// <param name="size">Size in disk of the app.</param>
         /// <param name="version">Version of the app.</param>
         /// <seealso cref="Software"/>
-        public InstalledApplication(string name, string publisher, string installDate, string size, string version) {
-            Name = name;
-            Publisher = publisher;
-            InstallDate = ParseRawDate(installDate);
-            Size = Convert.ToInt32(size);
-            Version = version;
+        public InstalledApplication(object name, object publisher, object installDate, object size, object version) {
+            Name = name is null ? string.Empty : name.ToString();
+            Publisher = publisher is null ? string.Empty : publisher.ToString();
+            InstallDate = installDate is null ? DateTime.MinValue : ParseRawDate(installDate.ToString());
+            Size = size is null ? 0 : Convert.ToInt32(size);
+            Version = version is null ? string.Empty : version.ToString();
         }
 
         /// <summary>
