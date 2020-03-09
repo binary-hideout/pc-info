@@ -64,7 +64,14 @@ namespace PCInfoDesktop.Models {
             catch (FormatException) {
                 return null;
             }
+        }
 
+        /// <summary>
+        /// Makes a <c>string</c> representation of the installed application.
+        /// </summary>
+        /// <returns><c>string</c> representing the application.</returns>
+        public override string ToString() {
+            return $"{Name}, {Publisher}, {InstallDate}, {Size}, {Version}";
         }
     }
 }
