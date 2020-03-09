@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace PCInfoDesktop.Models {
@@ -18,13 +19,16 @@ namespace PCInfoDesktop.Models {
         private static string REGISTRY32 { get; } = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
 
         /// <summary>
-        /// Gets the installed applications in the PC.
+        /// Gets the installed applications by specified arguments.
         /// </summary>
-        public static void GetInstalledApps() {
-            using (var key = Registry.LocalMachine.OpenSubKey(REGISTRY64)) {
-                foreach (var subKeyName in key.GetSubKeyNames()) {
-                    using (var tempKey = key.OpenSubKey(subKeyName)) {
-                        // list available values to get
+        /// <param name="registryKey">Registry key object to search for.</param>
+        /// <param name="registryName">Registry name to search for specified version of applications (32 or 64-bit).</param>
+        /// <param name="currentList">List of <c>InstalledApplication</c> class. It can be empty but not <c>null</c>.</param>
+        private  static List<InstalledApplication> GetInstalledAppsBy(RegistryKey registryKey, string registryName, List<InstalledApplication> currentList) {
+            using (var subKey = registryKey.OpenSubKey(registryName)) {
+                foreach (var subKeyName in subKey.GetSubKeyNames()) {
+                    using (var tempKey = subKey.OpenSubKey(subKeyName)) {
+                        // print available values to get
                         //foreach (var name in tempKey.GetValueNames()) {
                         //    Console.WriteLine(name);
                         //}
@@ -33,10 +37,18 @@ namespace PCInfoDesktop.Models {
                         var date = tempKey.GetValue("InstallDate");
                         var size = tempKey.GetValue("EstimatedSize");
                         var version = tempKey.GetValue("DisplayVersion");
-                        Console.WriteLine($"{name}, {publisher}, {date}, {size}, {version}");
+
+                        var app = new InstalledApplication(name, publisher, date, size, version);
+
+                        // if app's name is not empty and it hasn't been added
+                        if (app.Name != string.Empty && !currentList.Any(listedApp => listedApp.Name == app.Name)) {
+                            currentList.Add(app);
+                        }
                     }
                 }
             }
+
+            return currentList;
         }
     }
 }
