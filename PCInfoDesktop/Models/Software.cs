@@ -19,6 +19,11 @@ namespace PCInfoDesktop.Models {
         private static string REGISTRY32 { get; } = @"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
 
         /// <summary>
+        /// Registry key to get PC name.
+        /// </summary>
+        private static string REGISTRY_NAME { get; } = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName";
+
+        /// <summary>
         /// Gets the installed applications by specified arguments.
         /// </summary>
         /// <param name="registryKey">Registry key object to search for.</param>
