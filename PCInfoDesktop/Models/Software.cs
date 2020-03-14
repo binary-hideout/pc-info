@@ -21,7 +21,7 @@ namespace PCInfoDesktop.Models {
         /// <summary>
         /// Registry key to get PC name.
         /// </summary>
-        private static string REGISTRY_NAME { get; } = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName";
+        private static string REGISTRY_OS { get; } = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion";
 
         /// <summary>
         /// Gets the installed applications by specified arguments.
@@ -75,6 +75,18 @@ namespace PCInfoDesktop.Models {
             installedApplications.Sort((app1, app2) => app1.Name.CompareTo(app2.Name));
 
             return installedApplications;
+        }
+
+        /// <summary>
+        /// Gets a value of the operating system.
+        /// </summary>
+        /// <param name="machineName">Name of the local PC.</param>
+        /// <param name="valueName">Name of the value or property to be retrieved.</param>
+        /// <returns><c>string</c> containing the specified value.</returns>
+        public static string GetOSValue(string machineName, string valueName) {
+            using (var subKey = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Environment.MachineName).OpenSubKey(REGISTRY_OS)) {
+                return subKey.GetValue(valueName).ToString();
+            }
         }
     }
 }
