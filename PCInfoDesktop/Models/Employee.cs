@@ -17,5 +17,14 @@ namespace PCInfoDesktop.Models
 
         public string SecondLastName
         { get; set; }
+
+        public Employee(int id, string name, string firstLastName, string secondLastName)
+        {
+            ID = id;
+            Name = name;
+            FirstLastName = firstLastName;
+            SecondLastName = secondLastName;
+        }
+
     }
 }
