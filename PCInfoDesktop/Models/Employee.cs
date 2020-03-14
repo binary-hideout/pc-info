@@ -6,19 +6,16 @@ namespace PCInfoDesktop.Models
 {
     public class Employee
     {
-        private int id;
-        private string name;
-        private string firstLastName;
-        private string secondLastName;
+        public int ID
+        { get; set; }
 
+        public string Name
+        { get; set; }
 
-        public Employee(int id, string name, string firstLastName, string secondLastName)
-        {
-            this.id = id;
-            this.name = name;
-            this.firstLastName = firstLastName;
-            this.secondLastName = secondLastName;
-        }
+        public string FirstLastName
+        { get; set; }
 
+        public string SecondLastName
+        { get; set; }
     }
 }
