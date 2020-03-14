@@ -10,12 +10,17 @@ namespace PCInfoDesktop.Models {
         /// <summary>
         /// PC name.
         /// </summary>
-        public string Name { get; private set; }
+        public string PCName { get; private set; }
 
         /// <summary>
-        /// PC serial number.
+        /// Name of the operating system.
         /// </summary>
-        public string SerialNumber { get; private set; }
+        public string OSName { get; private set; }
+
+        /// <summary>
+        /// ID of the operating system.
+        /// </summary>
+        public string OSId { get; private set; }
 
         /// <summary>
         /// Applications (software) that are installed in the PC.
