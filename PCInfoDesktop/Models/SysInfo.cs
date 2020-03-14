@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
-    /// Class to store system information: PC name, serial number and installed applications (software).
+    /// Class to store system information.
     /// </summary>
     public class SysInfo {
         /// <summary>
@@ -26,5 +26,15 @@ namespace PCInfoDesktop.Models {
         /// Applications (software) that are installed in the PC.
         /// </summary>
         public List<InstalledApplication> InstalledApplications { get; private set; }
+
+        /// <summary>
+        /// Constructs an object containing basic system information: PC name, OS name, OS ID and installed applications.
+        /// </summary>
+        public SysInfo() {
+            PCName = Environment.MachineName;
+            OSName = Software.GetOSValue(PCName, "ProductName");
+            OSId = Software.GetOSValue(PCName, "ProductId");
+            InstalledApplications = Software.GetAllInstalledApps();
+        }
     }
 }
