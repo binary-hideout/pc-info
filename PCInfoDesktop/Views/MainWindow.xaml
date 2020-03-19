@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:PCInfoDesktop.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox x:Name="textBox" Margin="301,139,298,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="30"/>
-        <PasswordBox x:Name="passwordBox" Height="30" Margin="302,187,298,217" d:LayoutOverrides="HorizontalAlignment"/>
-    </Grid>
+    <Grid/>
 </Window>

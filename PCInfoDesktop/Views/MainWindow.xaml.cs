@@ -8,5 +8,10 @@ namespace PCInfoDesktop.Views {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
