@@ -27,28 +27,28 @@
                FontSize="50" Foreground="White" FontWeight="Bold">
             Registro
         </Label>
-        
-        <TextBox Name="textBoxID" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 0, 0, 0" Text="Matricula"
+
+        <TextBox Name="textBoxID" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 0, 0, 0" Text="{Binding id}"
                  HorizontalAlignment="Left" VerticalAlignment="Top">
             
         </TextBox>
 
-        <TextBox Name="textBoxUser" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 30, 0, 0" Text="Usuario"
+        <TextBox Name="textBoxUser" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 30, 0, 0" Text="{Binding UserName}"
                  HorizontalAlignment="Left" VerticalAlignment="Top">
 
         </TextBox>
 
-        <TextBox Name="textBoxFirst" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 60, 0, 0" Text="Apellido Paterno"
+        <TextBox Name="textBoxFirst" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 60, 0, 0" Text="{Binding UserNameFirst}"
                  HorizontalAlignment="Left" VerticalAlignment="Top">
 
         </TextBox>
 
-        <TextBox Name="textBoxLast" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 90, 0, 0" Text="Apellido Materno"
+        <TextBox Name="textBoxLast" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 90, 0, 0" Text="{Binding UserNameSecond}"
                  HorizontalAlignment="Left" VerticalAlignment="Top">
 
         </TextBox>
 
-        <Button Grid.Column="1" Grid.Row="1" Width="200" Height="30" Click="Button_Click" VerticalAlignment="Center">
+        <Button Grid.Column="1" Grid.Row="1" Width="200" Height="30" VerticalAlignment="Center" Command="{Binding ButtonCommand}" >
             Ingresar
         </Button>
 

@@ -1,4 +1,5 @@
 ﻿using PCInfoDesktop.Models;
+using PCInfoDesktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,14 +19,10 @@ namespace PCInfoDesktop.Views
     /// </summary>
     public partial class SystemInformationWindow : Window
     {
-        public SystemInformationWindow(Employee employee)
+        public SystemInformationWindow()
         {
             InitializeComponent();
-            Usuario.Content = "Bienvenido: " + employee.ID.ToString() + " " + employee.Name + " " + employee.FirstLastName + " " + employee.SecondLastName;
-            SysInfo systemInformation = new SysInfo();
-            sysName.Content = "Nombre del equipo: " + systemInformation.PCName;
-            sysOS.Content = "Sistema operativo: " + systemInformation.OSName;
-            InstalledApps.Content = systemInformation.InstalledApplications[8].Size;
+            this.DataContext = new SystemViewModel();
         }
     }
 }
