@@ -19,10 +19,11 @@ namespace PCInfoDesktop.Views
     /// </summary>
     public partial class SystemInformationWindow : Window
     {
-        public SystemInformationWindow()
+        public SystemInformationWindow(Employee employee)
         {
             InitializeComponent();
             this.DataContext = new SystemViewModel();
+            Usuario.Content = employee.ID + ", " + employee.Name + " " + employee.FirstLastName + " " + employee.SecondLastName;
 
         }
 

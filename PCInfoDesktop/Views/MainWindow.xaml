@@ -28,25 +28,45 @@
             Registro
         </Label>
 
-        <TextBox Name="textBoxID" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 0, 0, 0" Text="{Binding id}"
-                 HorizontalAlignment="Left" VerticalAlignment="Top">
+        <TextBox Name="textBoxID" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 0, 0, 0" Text="{Binding id}"
+                 HorizontalAlignment="Right" VerticalAlignment="Top">
             
         </TextBox>
 
-        <TextBox Name="textBoxUser" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 30, 0, 0" Text="{Binding UserName}"
-                 HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Label Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 0, 20, 0" Content="Matricula"
+               HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="13">
+            
+        </Label>
+
+        <TextBox Name="textBoxUser" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 30, 0, 0" Text="{Binding UserName}"
+                 HorizontalAlignment="Right" VerticalAlignment="Top">
 
         </TextBox>
 
-        <TextBox Name="textBoxFirst" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 60, 0, 0" Text="{Binding UserNameFirst}"
-                 HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Label Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 30, 20, 0" Content="Nombre"
+               HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="13">
+
+        </Label>
+
+        <TextBox Name="textBoxFirst" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 60, 0, 0" Text="{Binding UserNameFirst}"
+                 HorizontalAlignment="Right" VerticalAlignment="Top">
 
         </TextBox>
 
-        <TextBox Name="textBoxLast" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="50, 90, 0, 0" Text="{Binding UserNameSecond}"
-                 HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Label Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 60, 20, 0" Content="Apellido Paterno"
+               HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="13">
+
+        </Label>
+
+        <TextBox Name="textBoxLast" Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 90, 0, 0" Text="{Binding UserNameSecond}"
+                 HorizontalAlignment="Right" VerticalAlignment="Top">
 
         </TextBox>
+
+        <Label Grid.Column="0" Grid.Row="1" Width="200" Height="25" Margin="0, 90, 20, 0" Content="Apellido Materno"
+               HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="13">
+
+        </Label>
 
         <Button Grid.Column="1" Grid.Row="1" Width="200" Height="30" VerticalAlignment="Center" Click="SwitchWindows" >
             Ingresar

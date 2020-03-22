@@ -18,7 +18,12 @@ namespace PCInfoDesktop.Views {
 
         private void SwitchWindows(object sender, RoutedEventArgs e)
         {
-            SystemInformationWindow systemInformationWindow = new SystemInformationWindow();
+            string UserID = textBoxID.Text;
+            string UserName = textBoxUser.Text;
+            string UserNameFirst = textBoxFirst.Text;
+            string UserNameSecond = textBoxLast.Text;
+            Employee employee = new Employee(UserID, UserName, UserNameFirst, UserNameSecond);
+            SystemInformationWindow systemInformationWindow = new SystemInformationWindow(employee);
             systemInformationWindow.Show();
         }
 
