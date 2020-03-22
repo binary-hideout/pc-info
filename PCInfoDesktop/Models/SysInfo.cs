@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace PCInfoDesktop.Models {
@@ -25,7 +26,7 @@ namespace PCInfoDesktop.Models {
         /// <summary>
         /// Applications (software) that are installed in the PC.
         /// </summary>
-        public List<InstalledApplication> InstalledApplications { get; private set; }
+        public ObservableCollection<InstalledApplication> InstalledApplications { get; private set; }
 
         /// <summary>
         /// Constructs an object containing basic system information: PC name, OS name, OS ID and installed applications.
@@ -34,7 +35,7 @@ namespace PCInfoDesktop.Models {
             PCName = Environment.MachineName;
             OSName = Software.GetOSValue(PCName, "ProductName");
             OSId = Software.GetOSValue(PCName, "ProductId");
-            InstalledApplications = Software.GetAllInstalledApps();
+            InstalledApplications = new ObservableCollection<InstalledApplication>(Software.GetAllInstalledApps());
         }
     }
 }

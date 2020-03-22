@@ -15,5 +15,12 @@ namespace PCInfoDesktop.Views {
         {
 
         }
+
+        private void SwitchWindows(object sender, RoutedEventArgs e)
+        {
+            SystemInformationWindow systemInformationWindow = new SystemInformationWindow();
+            systemInformationWindow.Show();
+        }
+
     }
 }

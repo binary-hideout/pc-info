@@ -48,7 +48,7 @@
 
         </TextBox>
 
-        <Button Grid.Column="1" Grid.Row="1" Width="200" Height="30" VerticalAlignment="Center" Command="{Binding ButtonCommand}" >
+        <Button Grid.Column="1" Grid.Row="1" Width="200" Height="30" VerticalAlignment="Center" Click="SwitchWindows" >
             Ingresar
         </Button>
 

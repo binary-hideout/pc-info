@@ -23,6 +23,8 @@ namespace PCInfoDesktop.Views
         {
             InitializeComponent();
             this.DataContext = new SystemViewModel();
+
         }
+
     }
 }
