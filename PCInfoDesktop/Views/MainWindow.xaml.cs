@@ -18,7 +18,8 @@ namespace PCInfoDesktop.Views {
 
         private void SwitchWindows(object sender, RoutedEventArgs e)
         {
-            string UserID = textBoxID.Text;
+            string UserIDText = textBoxID.Text;
+            int UserID = Int32.Parse(UserIDText);
             string UserName = textBoxUser.Text;
             string UserNameFirst = textBoxFirst.Text;
             string UserNameSecond = textBoxLast.Text;

@@ -36,6 +36,10 @@
         <TextBox Name="InstalledApps" Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Auto"  
                  Margin="20, 10, 20, 10" Text="{Binding InstalledApps}"/>
 
+        <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="GenerateReport">
+            Generar Reporte
+        </Button>
+        
         <Grid.Background>
             <ImageBrush Opacity="0.7" ImageSource="C:\Users\Danie\Desktop\pc-info\PCInfoDesktop\Assets\network.jpg" />
         </Grid.Background>

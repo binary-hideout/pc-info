@@ -6,7 +6,7 @@ namespace PCInfoDesktop.Models
 {
     public class Employee
     {
-        public string ID
+        public int ID
         { get; set; }
 
         public string Name
@@ -18,7 +18,7 @@ namespace PCInfoDesktop.Models
         public string SecondLastName
         { get; set; }
 
-        public Employee(string id, string name, string firstLastName, string secondLastName)
+        public Employee(int id, string name, string firstLastName, string secondLastName)
         {
             ID = id;
             Name = name;

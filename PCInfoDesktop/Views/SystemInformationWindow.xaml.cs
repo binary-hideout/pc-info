@@ -2,6 +2,7 @@
 using PCInfoDesktop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,13 +20,21 @@ namespace PCInfoDesktop.Views
     /// </summary>
     public partial class SystemInformationWindow : Window
     {
+
+        Employee GlobalEmployee { get; set; }
+
         public SystemInformationWindow(Employee employee)
         {
             InitializeComponent();
             this.DataContext = new SystemViewModel();
-            Usuario.Content = employee.ID + ", " + employee.Name + " " + employee.FirstLastName + " " + employee.SecondLastName;
+            GlobalEmployee = employee;
+            Usuario.Content = GlobalEmployee.ID.ToString() + ", " + GlobalEmployee.Name + " " + GlobalEmployee.FirstLastName + " " + GlobalEmployee.SecondLastName;
 
         }
 
+        private void GenerateReport(object sender, RoutedEventArgs e)
+        {
+            ReportGenerator.WriteReport(GlobalEmployee);
+        }
     }
 }
