@@ -1,10 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
-using iText.Kernel.Colors;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
@@ -17,7 +20,10 @@ namespace PCInfoDesktop.Models {
         /// <param name="id">ID of the current employee.</param>
         /// <returns>Path of the report corresponding to the ID.</returns>
         private static string GetReportPath(int id, string extension = "pdf") {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @$"Reports\{id}_agreement.{extension}");
+            return Path.Combine(
+                Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName),
+                "Reports",
+                $"{id}_agreement.{extension}");
         }
 
         /// <summary>
@@ -25,7 +31,7 @@ namespace PCInfoDesktop.Models {
         /// </summary>
         /// <param name="employee">Logged employee who will sign the report.</param>
         public static void WriteReport(Employee employee) {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Reports");
+            string path = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Reports");
             if (!Directory.Exists(path)) {
                 Directory.CreateDirectory(path);
             }
