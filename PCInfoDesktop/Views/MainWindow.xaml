@@ -73,7 +73,7 @@
         </Button>
 
         <Grid.Background>
-            <ImageBrush Opacity="0.7" ImageSource="C:\Users\Danie\Desktop\pc-info\PCInfoDesktop\Assets\network.jpg" />
+            <ImageBrush Opacity="0.7" ImageSource="/Assets/network.jpg" />
         </Grid.Background>
     </Grid>
 </Window>
