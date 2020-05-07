@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using PCInfoDesktop.Models;
+using System;
+using System.Windows;
 
 namespace PCInfoDesktop.Views {
     /// <summary>
@@ -8,5 +10,23 @@ namespace PCInfoDesktop.Views {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void SwitchWindows(object sender, RoutedEventArgs e)
+        {
+            string UserIDText = textBoxID.Text;
+            int UserID = Int32.Parse(UserIDText);
+            string UserName = textBoxUser.Text;
+            string UserNameFirst = textBoxFirst.Text;
+            string UserNameSecond = textBoxLast.Text;
+            Employee employee = new Employee(UserID, UserName, UserNameFirst, UserNameSecond);
+            SystemInformationWindow systemInformationWindow = new SystemInformationWindow(employee);
+            systemInformationWindow.Show();
+        }
+
     }
 }
