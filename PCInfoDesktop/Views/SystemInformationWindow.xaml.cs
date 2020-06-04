@@ -1,20 +1,11 @@
-﻿using PCInfoDesktop.Models;
-using PCInfoDesktop.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using Microsoft.Win32;
 
-namespace PCInfoDesktop.Views
-{
+using PCInfoDesktop.Models;
+using PCInfoDesktop.ViewModels;
+
+using System.Windows;
+
+namespace PCInfoDesktop.Views {
     /// <summary>
     /// Interaction logic for SystemInformationWindow.xaml
     /// </summary>
@@ -34,7 +25,23 @@ namespace PCInfoDesktop.Views
 
         private void GenerateReport(object sender, RoutedEventArgs e)
         {
-            ReportGenerator.WriteReport(GlobalEmployee);
+            ReportGenerator.WriteReport(GlobalEmployee, false);
+        }
+
+        private void Browse_Click(object sender, RoutedEventArgs e) {
+            if (string.IsNullOrWhiteSpace(TxtCertPwd.Password)) {
+                MessageBox.Show("Introduzca la contraseña del certificado antes de cargarlo.", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var browsedFile = new OpenFileDialog() {
+                Filter = "Personal Information Exchange (*.pfx)|*.pfx"
+            };
+            if (browsedFile.ShowDialog() == true) {
+                ReportGenerator.WriteReport(GlobalEmployee, true);
+                ElectronicSignature.SignPDF(GlobalEmployee.ID, browsedFile.FileName, TxtCertPwd.Password.ToCharArray());
+            }
         }
     }
 }
