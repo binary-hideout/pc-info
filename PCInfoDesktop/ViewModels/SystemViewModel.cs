@@ -1,7 +1,6 @@
 ﻿using PCInfoDesktop.Models;
 
-namespace PCInfoDesktop.ViewModels
-{
+namespace PCInfoDesktop.ViewModels {
     public class SystemViewModel : BaseViewModel
     {
 

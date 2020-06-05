@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="SystemInformationWindow" Height="450" Width="800">
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -17,31 +16,37 @@
                FontSize="16" Foreground="White">
         </Label>
 
-        <Label Name="sysName" Grid.Row="0" HorizontalAlignment="Center" Width="300" Height="50" 
-               FontSize="16" Foreground="White" Content="{Binding SystemInformation.PCName}">
-        </Label>
-
         <Label Grid.Row="0" HorizontalAlignment="Left" Width="200" Height="50" 
-               FontSize="16" Foreground="White" Content="Nombre del equipo:">
+               FontSize="16" Foreground="Black" Content="Nombre del equipo:">
         </Label>
-
-        <Label Name="sysOS" Grid.Row="0" HorizontalAlignment="Center" Width="300" Height="50" Margin="0, 120, 0, 0"
-                FontSize="16" Foreground="White" Content="{Binding SystemInformation.OSName}">
+        <Label Name="sysName" Grid.Row="0" HorizontalAlignment="Center" Width="300" Height="50" 
+               FontSize="16" Foreground="Black" Content="{Binding SystemInformation.PCName}">
         </Label>
+        <Button Grid.Row="0" HorizontalAlignment="Right" Click="GenerateReport" Width="200" Height="30" >
+            Generar reporte
+        </Button>
 
         <Label  Grid.Row="0" HorizontalAlignment="Left" Width="200" Height="50" Margin="0, 120, 0, 0"
-                FontSize="16" Foreground="White" Content="Sistema Operativo:">
+                FontSize="16" Foreground="Black" Content="Sistema Operativo:">
         </Label>
+        <Label Name="sysOS" Grid.Row="0" HorizontalAlignment="Center" Width="300" Height="50" Margin="0, 120, 0, 0"
+                FontSize="16" Foreground="Black" Content="{Binding SystemInformation.OSName}">
+        </Label>
+        <Button Grid.Row="0" HorizontalAlignment="Right" Click="Browse_Click" Width="200" Height="30" Margin="0, 120, 0, 0">
+            Cargar certificado
+        </Button>
+
+
+        <Label Content="Contraseña:" HorizontalAlignment="Left" Height="50" Margin="457,202,0,182"
+               Grid.RowSpan="2" FontSize="16" Foreground="Black"/>
+        <PasswordBox Name="TxtCertPwd" HorizontalAlignment="Right" Height="30" Margin="495,192,0,192"
+                     Grid.RowSpan="2" Width="200"></PasswordBox>
 
         <TextBox Name="InstalledApps" Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Auto"  
-                 Margin="20, 10, 20, 10" Text="{Binding InstalledApps}"/>
+                 Margin="20,25,20,10" Text="{Binding InstalledApps}"/>
 
-        <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Click="GenerateReport">
-            Generar Reporte
-        </Button>
-        
         <Grid.Background>
-            <ImageBrush Opacity="0.7" ImageSource="/Assets/network.jpg" />
+            <ImageBrush Opacity="0.3" ImageSource="/Assets/network.jpg" />
         </Grid.Background>
     </Grid>
 </Window>

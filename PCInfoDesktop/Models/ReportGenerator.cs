@@ -4,10 +4,8 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 
-using System;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 
 namespace PCInfoDesktop.Models {
     /// <summary>
@@ -19,18 +17,19 @@ namespace PCInfoDesktop.Models {
         /// </summary>
         /// <param name="id">ID of the current employee.</param>
         /// <returns>Path of the report corresponding to the ID.</returns>
-        private static string GetReportPath(int id, string extension = "pdf") {
+        public static string GetReportPath(int id, string signed = "") {
             return Path.Combine(
                 Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName),
                 "Reports",
-                $"{id}_agreement.{extension}");
+                $"{id}_agreement{signed}.pdf");
         }
 
         /// <summary>
         /// Creates a file and writes the content of the Agreement Report.
         /// </summary>
         /// <param name="employee">Logged employee who will sign the report.</param>
-        public static void WriteReport(Employee employee) {
+        /// <param name="isESigned">Determines if the PDF will be electronically signed or not.</param>
+        public static void WriteReport(Employee employee, bool isESigned) {
             string path = Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "Reports");
             if (!Directory.Exists(path)) {
                 Directory.CreateDirectory(path);
@@ -103,12 +102,17 @@ namespace PCInfoDesktop.Models {
                 }
                 document.Add(table);
 
-                document.Add(new Paragraph("\n\n\nPor lo anterior, confirmo que estoy enterado:")
-                    .SetFontSize(11)
-                    .SetTextAlignment(TextAlignment.CENTER));
-                document.Add(new Paragraph("\n\n________________________")
-                    .SetFontSize(11)
-                    .SetTextAlignment(TextAlignment.CENTER));
+                if (isESigned) {
+                    document.Add(new AreaBreak());
+                }
+                else {
+                    document.Add(new Paragraph("\n\n\nPor lo anterior, confirmo que estoy enterado:")
+                        .SetFontSize(11)
+                        .SetTextAlignment(TextAlignment.CENTER));
+                    document.Add(new Paragraph("\n\n________________________")
+                        .SetFontSize(11)
+                        .SetTextAlignment(TextAlignment.CENTER));
+                }
                 document.Add(new Paragraph($"{fullname}")
                     .SetFontSize(11)
                     .SetTextAlignment(TextAlignment.CENTER));
