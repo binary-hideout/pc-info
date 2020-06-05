@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace PC_INFO_HOST.Models
         public List<string> GetReports()
         {
             List<string> filesReport = new List<string> { };
-            string filePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string filePath = Process.GetCurrentProcess().MainModule.FileName;
             string targetDirectory = System.IO.Path.GetDirectoryName(filePath);
             //string netcoreapp = System.IO.Directory.GetParent(filePath).FullName;
             //string debugDirectory = System.IO.Directory.GetParent(netcoreapp).FullName;
